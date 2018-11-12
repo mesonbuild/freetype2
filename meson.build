@@ -1,4 +1,5 @@
 project('freetype2', 'c',
+  license : ['FTL', 'GPL2'],
   meson_version: '>= 0.47.0',
   version: '22.1.16',
   default_options: [ 'buildtype=debugoptimized'])
