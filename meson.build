@@ -125,7 +125,7 @@ c_args = [
   '-DFT_CONFIG_OPTIONS_H=<ftoption.h>'
 ]
 
-if host_machine.system() == 'windows'
+if cc.get_id() == 'msvc'
   c_args += [
     '-D_CRT_SECURE_NO_WARNINGS',
     '-D_CRT_NONSTDC_NO_WARNINGS',
