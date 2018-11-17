@@ -33,6 +33,8 @@
   /*                                                                       */
   /*************************************************************************/
 
+/* MESON: based on unix/ftconfig.in with but meson-friendly configuration defines */
+
 #ifndef FTCONFIG_H_
 #define FTCONFIG_H_
 

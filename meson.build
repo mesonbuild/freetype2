@@ -1,8 +1,20 @@
 project('freetype2', 'c',
   license : ['FTL', 'GPL2'],
   meson_version: '>= 0.47.0',
-  version: '22.1.16',
-  default_options: [ 'buildtype=debugoptimized'])
+  version: '2.9.1',
+  default_options: ['buildtype=debugoptimized'])
+
+# NOTE about Freetype versions
+# There are 3 versions numbers associated with each releases:
+# - official release number (eg. 2.9.1) - accessible via FREETYPE_{MAJOR,MINOR,PATCH} macros from FT_FREETYPE_H
+# - libtool-specific version number, this is hat is returned by freetype-config --version / pkg-config --modversion (eg. 22.1.16)
+# - the platform-specific shared object version number (eg. 6.16.1)
+# See https://git.savannah.gnu.org/cgit/freetype/freetype2.git/tree/docs/VERSIONS.TXT
+# for more information
+release_version = meson.project_version()
+libtool_version = '22.1.16'
+so_version = '6.16.1'
+so_soversion = '6'
 
 pkgmod = import('pkgconfig')
 
@@ -209,8 +221,8 @@ libfreetype = library('freetype', base_sources,
   dependencies: deps,
   c_args: c_args,
   install: true,
-  version: '6.16.0',
-  soversion: '6')
+  version: so_version,
+  soversion: so_soversion)
 
 freetype_dep = declare_dependency(link_with: libfreetype,
   include_directories : incbase,
@@ -225,4 +237,4 @@ pkgmod.generate(libfreetype,
   name: 'freetype2',
   description: 'The FreeType font rendering library.',
   subdirs: ['freetype2'],
-  version: meson.project_version())
+  version: libtool_version)
